@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Saya - WhatsApp & Saweria</title>
+    
+    <!-- Menggunakan Font Poppins dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Kode CSS Disatukan di Sini -->
+    <style>
+        /* --- Gaya Global & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212; /* Latar belakang gelap utama */
+            color: #e0e0e0; /* Warna teks default */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* --- Container Utama --- */
+        .container {
+            background-color: #1e1e1e; /* Warna container sedikit lebih terang */
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Bayangan gelap */
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid #333333; /* Batas tipis untuk definisi */
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff; /* Judul putih untuk kontras maksimal */
+        }
+
+        header p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #b0b0b0; /* Teks deskripsi lebih redup */
+        }
+
+        /* --- Wrapper untuk Link Card --- */
+        .links-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        /* --- Gaya untuk Setiap Link Card --- */
+        .link-card {
+            background-color: #2a2a2a; /* Latar card lebih terang dari container */
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            border: 1px solid #444444;
+        }
+
+        .link-card:hover {
+            transform: translateY(-8px);
+            background-color: #333333; /* Sedikit lebih terang saat hover */
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        .link-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            object-fit: contain;
+            filter: brightness(0) invert(1); /* Membuat logo menjadi putih */
+        }
+
+        .link-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .link-card p {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        /* --- Gaya untuk Tombol (Button) --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px; /* Sudut lebih tajam untuk tampilan modern */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Warna Khusus untuk Setiap Tombol */
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+
+        .btn-saweria {
+            background-color: #ff6b35;
+        }
+
+        /* --- Gaya Footer --- */
+        footer p {
+            font-size: 0.9rem;
+            color: #808080; /* Teks footer paling redup */
+            margin-top: 20px;
+        }
+
+        /* --- Responsif untuk Layar Kecil (Handphone) --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .links-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .link-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <!-- Anda bisa mengganti teks ini -->
+            <h1>Terima Kasih Sudah Berkunjung!</h1>
+            <p>Temukan konten menarik dan dukung karya saya melalui link di bawah ini.</p>
+        </header>
+
+        <main class="links-wrapper">
+            <!-- Link Card untuk WhatsApp -->
+            <div class="link-card">
+                <img src="https://files.catbox.moe/hoic3c.jpg" alt="WhatsApp Logo">
+                <h2>WhatsApp Channel</h2>
+                <p>Bergabunglah dengan saluran WhatsApp untuk mendapatkan update terbaru.</p>
+                
+                <!-- GANTI LINK INI -->
+                <a href="https://whatsapp.com/channel/0029VbBeExo8fewyRRjWVf1X" target="_blank" class="btn btn-whatsapp">
+                    Kunjungi Channel
+                </a>
+            </div>
+
+            <!-- Link Card untuk Saweria -->
+            <div class="link-card">
+                <img src="https://files.catbox.moe/ow69ax.jpg" alt="Saweria Logo">
+                <h2>Dukung di Saweria</h2>
+                <p>Jika suka dengan konten saya, beli saya kopi melalui Saweria.</p>
+                
+                <!-- GANTI LINK INI -->
+                <a href="https://saweria.co/siatminbaik" target="_blank" class="btn btn-saweria">
+                    Donasi Sekarang
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Anda bisa mengganti nama dan tahun di sini -->
+            <p>&copy; 2025 Atmin Baik. Not Copyright© <span style="color: #e74c3c;">&hearts;</span>.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
