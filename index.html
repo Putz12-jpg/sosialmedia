@@ -3,205 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Saya - WhatsApp & Saweria</title>
+    <title>Link Portal Admin</title>
     
-    <!-- Menggunakan Font Poppins dari Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Kode CSS Disatukan di Sini -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX transformation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <style>
-        /* --- Gaya Global & Reset --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #121212; /* Latar belakang gelap utama */
-            color: #e0e0e0; /* Warna teks default */
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* --- Container Utama --- */
-        .container {
-            background-color: #1e1e1e; /* Warna container sedikit lebih terang */
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Bayangan gelap */
-            max-width: 800px;
-            width: 100%;
-            border: 1px solid #333333; /* Batas tipis untuk definisi */
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #ffffff; /* Judul putih untuk kontras maksimal */
-        }
-
-        header p {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #b0b0b0; /* Teks deskripsi lebih redup */
-        }
-
-        /* --- Wrapper untuk Link Card --- */
-        .links-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        /* --- Gaya untuk Setiap Link Card --- */
-        .link-card {
-            background-color: #2a2a2a; /* Latar card lebih terang dari container */
-            border-radius: 12px;
-            padding: 30px;
-            width: 100%;
-            max-width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            border: 1px solid #444444;
-        }
-
-        .link-card:hover {
-            transform: translateY(-8px);
-            background-color: #333333; /* Sedikit lebih terang saat hover */
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
-        }
-
-        .link-card img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            object-fit: contain;
-            filter: brightness(0) invert(1); /* Membuat logo menjadi putih */
-        }
-
-        .link-card h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-
-        .link-card p {
-            font-size: 0.9rem;
-            color: #b0b0b0;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        /* --- Gaya untuk Tombol (Button) --- */
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            border-radius: 8px; /* Sudut lebih tajam untuk tampilan modern */
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #fff;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Warna Khusus untuk Setiap Tombol */
-        .btn-whatsapp {
-            background-color: #25D366;
-        }
-
-        .btn-saweria {
-            background-color: #ff6b35;
-        }
-
-        /* --- Gaya Footer --- */
-        footer p {
-            font-size: 0.9rem;
-            color: #808080; /* Teks footer paling redup */
-            margin-top: 20px;
-        }
-
-        /* --- Responsif untuk Layar Kecil (Handphone) --- */
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px;
+        @keyframes meteor {
+            0% {
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 1;
             }
-
-            header h1 {
-                font-size: 2rem;
+            70% {
+                opacity: 1;
             }
-
-            .links-wrapper {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
+            100% {
+                transform: translateX(300px) translateY(300px) rotate(45deg);
+                opacity: 0;
             }
-
-            .link-card {
-                max-width: 100%;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
             }
+            25% {
+                transform: translateY(-10px) rotate(-2deg);
+            }
+            75% {
+                transform: translateY(5px) rotate(2deg);
+            }
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(147, 51, 234, 0.5),
+                           0 0 40px rgba(147, 51, 234, 0.3),
+                           0 0 60px rgba(147, 51, 234, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(147, 51, 234, 0.8),
+                           0 0 50px rgba(147, 51, 234, 0.5),
+                           0 0 70px rgba(147, 51, 234, 0.3);
+            }
+        }
+        
+        .meteor-animation {
+            animation: meteor linear infinite;
+        }
+        
+        .logo-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .logo-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         }
     </style>
 </head>
 <body>
+    <div id="root"></div>
 
-    <div class="container">
-        <header>
-            <!-- Anda bisa mengganti teks ini -->
-            <h1>Terima Kasih Sudah Berkunjung!</h1>
-            <p>Temukan konten menarik dan dukung karya saya melalui link di bawah ini.</p>
-        </header>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // Icon components
+        const FaWhatsapp = ({ className }) => (
+            <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+        );
+        
+        const FaStar = ({ className }) => (
+            <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+        );
+        
+        const FaHeart = ({ className }) => (
+            <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        );
+        
+        const FaSatellite = ({ className }) => (
+            <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.49L17.5 6.5 10 10l3.5 7.5z"/>
+            </svg>
+        );
+        
+        const FaUserAstronaut = ({ className }) => (
+            <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+        );
 
-        <main class="links-wrapper">
-            <!-- Link Card untuk WhatsApp -->
-            <div class="link-card">
-                <img src="https://files.catbox.moe/hoic3c.jpg" alt="WhatsApp Logo">
-                <h2>WhatsApp Channel</h2>
-                <p>Bergabunglah dengan saluran WhatsApp untuk mendapatkan update terbaru.</p>
+        const SpaceLinkHub = () => {
+            const [stars, setStars] = useState([]);
+            const [meteors, setMeteors] = useState([]);
+            const [isLoaded, setIsLoaded] = useState(false);
+
+            useEffect(() => {
+                // Generate random stars
+                const generateStars = () => {
+                    const newStars = [];
+                    for (let i = 0; i < 150; i++) {
+                        newStars.push({
+                            id: i,
+                            left: Math.random() * 100,
+                            top: Math.random() * 100,
+                            size: Math.random() * 3,
+                            animationDuration: Math.random() * 3 + 2,
+                        });
+                    }
+                    setStars(newStars);
+                };
+
+                // Generate meteors
+                const generateMeteors = () => {
+                    const newMeteors = [];
+                    for (let i = 0; i < 3; i++) {
+                        newMeteors.push({
+                            id: i,
+                            left: Math.random() * 100,
+                            animationDelay: Math.random() * 5,
+                            animationDuration: Math.random() * 2 + 1,
+                        });
+                    }
+                    setMeteors(newMeteors);
+                };
+
+                generateStars();
+                generateMeteors();
                 
-                <!-- GANTI LINK INI -->
-                <a href="https://whatsapp.com/channel/0029VbBeExo8fewyRRjWVf1X" target="_blank" class="btn btn-whatsapp">
-                    Kunjungi Channel
-                </a>
-            </div>
+                // Set loaded state for animation
+                setTimeout(() => setIsLoaded(true), 100);
+            }, []);
 
-            <!-- Link Card untuk Saweria -->
-            <div class="link-card">
-                <img src="https://files.catbox.moe/ow69ax.jpg" alt="Saweria Logo">
-                <h2>Dukung di Saweria</h2>
-                <p>Jika suka dengan konten saya, beli saya kopi melalui Saweria.</p>
-                
-                <!-- GANTI LINK INI -->
-                <a href="https://saweria.co/siatminbaik" target="_blank" class="btn btn-saweria">
-                    Donasi Sekarang
-                </a>
-            </div>
-        </main>
+            const handleLinkClick = (url) => {
+                window.open(url, '_blank');
+            };
 
-        <footer>
-            <!-- Anda bisa mengganti nama dan tahun di sini -->
-            <p>&copy; 2025 Atmin Baik. Not Copyright© <span style="color: #e74c3c;">&hearts;</span>.</p>
-        </footer>
-    </div>
+            return (
+                <div className="min-h-screen bg-black overflow-hidden relative">
+                    {/* Animated Background */}
+                    <div className="fixed inset-0 z-0">
+                        {/* Gradient Background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-blue-900 opacity-50"></div>
+                        
+                        {/* Stars */}
+                        {stars.map((star) => (
+                            <div
+                                key={star.id}
+                                className="absolute rounded-full bg-white animate-pulse"
+                                style={{
+                                    left: `${star.left}%`,
+                                    top: `${star.top}%`,
+                                    width: `${star.size}px`,
+                                    height: `${star.size}px`,
+                                    animationDuration: `${star.animationDuration}s`,
+                                }}
+                            />
+                        ))}
+                        
+                        {/* Meteors */}
+                        {meteors.map((meteor) => (
+                            <div
+                                key={meteor.id}
+                                className="absolute w-1 h-1 bg-white rounded-full meteor-animation"
+                                style={{
+                                    left: `${meteor.left}%`,
+                                    top: '-10px',
+                                    animationDelay: `${meteor.animationDelay}s`,
+                                    animationDuration: `${meteor.animationDuration}s`,
+                                }}
+                            >
+                                <div className="absolute top-0 left-0 w-20 h-1 bg-gradient-to-r from-white to-transparent transform -translate-y-1/2"></div>
+                            </div>
+                        ))}
+                    </div>
 
+                    {/* Main Content */}
+                    <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-8">
+                        {/* Header with Custom Logo */}
+                        <div className={`text-center mb-12 transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
+                            {/* Custom Logo Container */}
+                            <div className="flex justify-center mb-6">
+                                <div className="relative">
+                                    {/* Logo dengan efek glow */}
+                                    <div className="logo-glow rounded-full p-1 bg-gradient-to-r from-purple-500 to-pink-500">
+                                        <div className="logo-float rounded-full overflow-hidden bg-black p-4">
+                                            {/* GANTI LOGO ANDA DI SINI */}
+                                            <img 
+                                                src="https://files.catbox.moe/4e11ps.png" 
+                                                alt="Logo" 
+                                                className="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full"
+                                            />
+                                        </div>
+                                    </div>
+                                    {/* Efek partikel di sekitar logo */}
+                                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-purple-400 rounded-full animate-ping"></div>
+                                    <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-pink-400 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                                    <div className="absolute top-1/2 -left-4 w-2 h-2 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                                </div>
+                            </div>
+                            
+                            <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-4">
+                                Saluran & Saweria
+                            </h1>
+                            <p className="text-gray-300 text-lg md:text-xl">
+                                Support Admin Dengan Saweria, Biar Makin Semangat Upload
+                            </p>
+                        </div>
+
+                        {/* Links Container */}
+                        <div className="w-full max-w-4xl space-y-6">
+                            {/* WhatsApp Channel 1 */}
+                            <div 
+                                className={`group transform transition-all duration-700 delay-100 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}
+                                onClick={() => handleLinkClick('LAGI DALAM PERBAIKAN')}
+                            >
+                                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-green-900/30 to-green-800/30 backdrop-blur-lg border border-green-500/30 p-6 cursor-pointer hover:scale-105 transition-all duration-300">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="relative flex items-center justify-between">
+                                        <div className="flex items-center space-x-4">
+                                            <div className="p-3 bg-green-500/20 rounded-full group-hover:bg-green-500/30 transition-colors duration-300">
+                                                <FaWhatsapp className="text-3xl text-green-400" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl font-bold text-white mb-1">WhatsApp Channel 1</h2>
+                                                <p className="text-gray-400">Saluran Doksli [ PENDING ]</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <FaUserAstronaut className="text-2xl text-green-400 group-hover:animate-pulse" />
+                                            <span className="text-green-400 font-semibold">Join Now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* WhatsApp Channel 2 */}
+                            <div 
+                                className={`group transform transition-all duration-700 delay-200 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}
+                                onClick={() => handleLinkClick('https://whatsapp.com/channel/0029Vb6dD6m2UPBPGjpIEG3o')}
+                            >
+                                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900/30 to-blue-800/30 backdrop-blur-lg border border-blue-500/30 p-6 cursor-pointer hover:scale-105 transition-all duration-300">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="relative flex items-center justify-between">
+                                        <div className="flex items-center space-x-4">
+                                            <div className="p-3 bg-blue-500/20 rounded-full group-hover:bg-blue-500/30 transition-colors duration-300">
+                                                <FaWhatsapp className="text-3xl text-blue-400" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl font-bold text-white mb-1">WhatsApp Channel 2</h2>
+                                                <p className="text-gray-400">Update Doksli Terbaru [ ACTIVE ]</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <FaSatellite className="text-2xl text-blue-400 group-hover:animate-spin" />
+                                            <span className="text-blue-400 font-semibold">Join Now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Saweria Donation */}
+                            <div 
+                                className={`group transform transition-all duration-700 delay-300 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-20 opacity-0'}`}
+                                onClick={() => handleLinkClick('https://saweria.co/siatminbaik')}
+                            >
+                                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-pink-900/30 to-purple-900/30 backdrop-blur-lg border border-pink-500/30 p-6 cursor-pointer hover:scale-105 transition-all duration-300">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-pink-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="relative flex items-center justify-between">
+                                        <div className="flex items-center space-x-4">
+                                            <div className="p-3 bg-pink-500/20 rounded-full group-hover:bg-pink-500/30 transition-colors duration-300">
+                                                <FaHeart className="text-3xl text-pink-400" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl font-bold text-white mb-1">Support Us</h2>
+                                                <p className="text-gray-400">Dukung Admin Melalui Saweria Biar Tetap Semangat Post Terbaru</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <FaStar className="text-2xl text-pink-400 group-hover:animate-pulse" />
+                                            <span className="text-pink-400 font-semibold">Donate</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div className={`mt-16 text-center transform transition-all duration-1000 delay-500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <p className="text-gray-500 text-sm">
+                                Made with <span className="text-pink-400">♥</span> in the cosmos
+                            </p>
+                            <div className="flex justify-center space-x-2 mt-2">
+                                {[...Array(5)].map((_, i) => (
+                                    <FaStar key={i} className="text-yellow-400 text-xs animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // Render the app
+        ReactDOM.render(<SpaceLinkHub />, document.getElementById('root'));
+    </script>
 </body>
 </html>
